@@ -4,17 +4,44 @@ namespace App\DataFixtures;
 
 use App\Entity\Category;
 use App\Entity\Product;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+    private $passwordHasher;
+
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    {
+        $this->passwordHasher = $passwordHasher;
+    }
+
     public function load(ObjectManager $manager): void
     {
+        $this->createUsers($manager);
         $categories = $this->createCategories($manager);
         $this->createProducts($manager, $categories);
 
         $manager->flush();
+    }
+
+    private function createUsers(ObjectManager $manager): void
+    {
+        $admin = new User();
+        $admin->setEmail('admin@example.com');
+        $admin->setName('Administrateur');
+        $admin->setRoles(['ROLE_ADMIN']);
+        $admin->setPassword($this->passwordHasher->hashPassword($admin, 'admin123'));
+        $manager->persist($admin);
+
+        $user = new User();
+        $user->setEmail('user@example.com');
+        $user->setName('Utilisateur Test');
+        $user->setRoles(['ROLE_USER']);
+        $user->setPassword($this->passwordHasher->hashPassword($user, 'user123'));
+        $manager->persist($user);
     }
 
     private function createCategories(ObjectManager $manager): array

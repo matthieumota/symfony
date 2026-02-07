@@ -15,7 +15,46 @@
 
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
-    <body>
+    <body class="bg-gray-50">
+        <nav class="bg-blue-600 text-white shadow-lg">
+            <div class="container mx-auto px-4">
+                <div class="flex justify-between items-center py-4">
+                    <div class="flex space-x-6">
+                        <a href="{{ path('home') }}" class="text-white hover:text-blue-200 transition">Accueil</a>
+                        <a href="{{ path('category_index') }}" class="text-white hover:text-blue-200 transition">Catégories</a>
+                        <a href="{{ path('product_index') }}" class="text-white hover:text-blue-200 transition">Produits</a>
+                    </div>
+                    <div>
+                        {% if app.user %}
+                            <span class="mr-4">Bonjour, {{ app.user.email }}</span>
+                            <form action="{{ path('app_logout') }}" method="post" class="inline">
+                                <input type="hidden" name="_token" value="{{ csrf_token('logout') }}">
+                                <button type="submit" class="bg-blue-700 hover:bg-blue-800 px-4 py-2 rounded transition">Déconnexion</button>
+                            </form>
+                        {% else %}
+                            <a href="{{ path('app_login') }}" class="bg-blue-700 hover:bg-blue-800 px-4 py-2 rounded transition mr-2">Connexion</a>
+                            <a href="{{ path('app_register') }}" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded transition">Inscription</a>
+                        {% endif %}
+                    </div>
+                </div>
+        </nav>
+
+        <main class="container mx-auto px-4">
+            {% for type, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="bg-{{ type == 'success' ? 'green' : 'red' }}-100 border border-{{ type == 'success' ? 'green' : 'red' }}-400 text-{{ type == 'success' ? 'green' : 'red' }}-700 px-4 py-3 rounded relative mb-4">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </main>
+
         {% block body %}{% endblock %}
+
+        <footer class="bg-gray-800 text-white py-6">
+            <div class="container mx-auto px-4 text-center">
+                <p>&copy; 2024 Symfony Demo - Migration 5.4 vers 7</p>
+            </div>
+        </footer>
     </body>
 </html>

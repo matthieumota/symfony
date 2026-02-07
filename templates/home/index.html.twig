@@ -67,13 +67,23 @@
                         </a>
                     </div>
 
-                    <div class="border border-gray-200 rounded-lg p-5 hover:shadow-md transition bg-gray-50 border-gray-200">
+                    <div class="border border-gray-200 rounded-lg p-5 hover:shadow-md transition bg-green-50 border-green-200">
                         <div class="flex items-center mb-3">
                             <span class="text-2xl mr-3">🔐</span>
                             <h3 class="text-lg font-semibold text-gray-800">Authentification</h3>
-                            <span class="ml-2 px-2 py-0.5 bg-gray-100 text-gray-800 text-xs rounded-full">À venir</span>
+                            <span class="ml-2 px-2 py-0.5 bg-green-100 text-green-800 text-xs rounded-full">Disponible</span>
                         </div>
-                        <p class="text-gray-600 text-sm">Système de login/logout avec rôles</p>
+                        <p class="text-gray-600 text-sm mb-3">Système de login/logout avec rôles (Admin/User)</p>
+                        {% if not app.user %}
+                            <a href="{{ path('app_login') }}"
+                               class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded text-sm">
+                                Se connecter →
+                            </a>
+                        {% else %}
+                            <span class="inline-block text-green-700 font-semibold text-sm">
+                                Connecté en tant que {{ app.user.email }}
+                            </span>
+                        {% endif %}
                     </div>
 
                     <div class="border border-gray-200 rounded-lg p-5 hover:shadow-md transition bg-gray-50 border-gray-200">
@@ -95,7 +105,7 @@
                         </div>
                         <div class="ml-3">
                             <p class="text-sm text-green-700">
-                                <strong>Dernière mise à jour :</strong> Catégories et Produits implémentés (CRUD complet avec méthode DELETE). Admin et Authentification seront ajoutés dans les prochaines étapes.
+                                <strong>Dernière mise à jour :</strong> Catégories, Produits et Authentification implémentés. Système de login/logout avec 2 utilisateurs de démo (admin@example.com/admin123, user@example.com/user123). Dashboard Admin sera ajouté dans la prochaine étape.
                             </p>
                         </div>
                     </div>
