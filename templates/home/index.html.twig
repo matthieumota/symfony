@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ project_name }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <script src="https://cdn.tailwindcss.com"></script>
+{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-white rounded-lg shadow-xl p-8 mb-8">
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                    {{ project_name }}
+                </h1>
+                <div class="flex items-center space-x-4 mb-6">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                        Symfony {{ sf_version }}
+                    </span>
+                    <span class="text-gray-500">→</span>
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                        Symfony 7
+                    </span>
+                </div>
+                <p class="text-gray-600 text-lg mb-6">
+                    Application CRUD de démonstration pour la formation de migration Symfony 5 vers Symfony 7.
+                </p>
+
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm text-yellow-700">
+                                <strong>Note importante :</strong> Ce projet utilise volontairement des patterns Symfony 5.4 (annotations PHP, configurations deprecated) pour illustrer les étapes de migration vers Symfony 7.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">🚀 À venir dans ce projet</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="border border-gray-200 rounded-lg p-5 hover:shadow-md transition">
+                        <div class="flex items-center mb-3">
+                            <span class="text-2xl mr-3">📦</span>
+                            <h3 class="text-lg font-semibold text-gray-800">CRUD Produits</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm">Gestion complète des produits avec catégories</p>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-lg p-5 hover:shadow-md transition">
+                        <div class="flex items-center mb-3">
+                            <span class="text-2xl mr-3">🏷️</span>
+                            <h3 class="text-lg font-semibold text-gray-800">CRUD Catégories</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm">Organisation des produits par catégories</p>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-lg p-5 hover:shadow-md transition">
+                        <div class="flex items-center mb-3">
+                            <span class="text-2xl mr-3">🔐</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Authentification</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm">Système de login/logout avec rôles</p>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-lg p-5 hover:shadow-md transition">
+                        <div class="flex items-center mb-3">
+                            <span class="text-2xl mr-3">📊</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Dashboard Admin</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm">Tableau de bord avec statistiques</p>
+                    </div>
+                </div>
+
+                <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">🎯 Points de migration à illustrer</h2>
+
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">✓</span>
+                            <span class="text-gray-700"><strong>Annotations PHP → Attributs PHP 8</strong> (@Route → #[Route])</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">✓</span>
+                            <span class="text-gray-700"><strong>Doctrine</strong> - Entity annotations et types de champs</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">✓</span>
+                            <span class="text-gray-700"><strong>Security</strong> - Nouveau système d'authentification</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">✓</span>
+                            <span class="text-gray-700"><strong>Forms</strong> - Options deprecated et nouveaux patterns</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">✓</span>
+                            <span class="text-gray-700"><strong>Webpack Encore → Asset Mapper</strong> - Gestion des assets</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">✓</span>
+                            <span class="text-gray-700"><strong>Twig</strong> - Fonctions deprecated et nouvelles syntaxes</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mt-8 flex items-center justify-between text-sm text-gray-500">
+                    <div>
+                        Version actuelle : <strong>Symfony {{ sf_version }}</strong>
+                    </div>
+                    <div>
+                        PHP Version : <strong>7.4+</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
