@@ -86,13 +86,23 @@
                         {% endif %}
                     </div>
 
-                    <div class="border border-gray-200 rounded-lg p-5 hover:shadow-md transition bg-gray-50 border-gray-200">
+                    <div class="border border-gray-200 rounded-lg p-5 hover:shadow-md transition bg-green-50 border-green-200">
                         <div class="flex items-center mb-3">
                             <span class="text-2xl mr-3">📊</span>
                             <h3 class="text-lg font-semibold text-gray-800">Dashboard Admin</h3>
-                            <span class="ml-2 px-2 py-0.5 bg-gray-100 text-gray-800 text-xs rounded-full">À venir</span>
+                            <span class="ml-2 px-2 py-0.5 bg-green-100 text-green-800 text-xs rounded-full">Disponible</span>
                         </div>
-                        <p class="text-gray-600 text-sm">Tableau de bord avec statistiques</p>
+                        <p class="text-gray-600 text-sm mb-3">Tableau de bord avec statistiques (réservé aux admins)</p>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('admin_dashboard') }}"
+                               class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded text-sm">
+                                Accéder au Dashboard →
+                            </a>
+                        {% else %}
+                            <span class="inline-block text-gray-600 text-sm">
+                                Connectez-vous en tant qu'admin pour y accéder
+                            </span>
+                        {% endif %}
                     </div>
                 </div>
 
@@ -105,7 +115,7 @@
                         </div>
                         <div class="ml-3">
                             <p class="text-sm text-green-700">
-                                <strong>Dernière mise à jour :</strong> Catégories, Produits et Authentification implémentés. Système de login/logout avec 2 utilisateurs de démo (admin@example.com/admin123, user@example.com/user123). Dashboard Admin sera ajouté dans la prochaine étape.
+                                <strong>Dernière mise à jour :</strong> Catégories, Produits, Authentification et Dashboard Admin implémentés. Système complet avec 2 utilisateurs de démo (admin@example.com/admin123, user@example.com/user123).
                             </p>
                         </div>
                     </div>

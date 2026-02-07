@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard Admin{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8">
+    <div class="container mx-auto px-4">
+        <div class="mb-8">
+            <h1 class="text-4xl font-bold text-gray-900 mb-2">
+                📊 Dashboard Admin
+            </h1>
+            <p class="text-gray-600">
+                Bienvenue, {{ app.user.email }} ! Voici un aperçu de votre application.
+            </p>
+        </div>
+
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="bg-{{ type == 'success' ? 'green' : type == 'error' ? 'red' : 'blue' }}-100 border border-{{ type == 'success' ? 'green' : type == 'error' ? 'red' : 'blue' }}-400 text-{{ type == 'success' ? 'green' : type == 'error' ? 'red' : 'blue' }}-700 px-4 py-3 rounded relative mb-6">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow-lg p-6 border-l-4 border-blue-500">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium">Catégories</p>
+                        <p class="text-3xl font-bold text-gray-900">{{ stats.categories }}</p>
+                    </div>
+                    <div class="text-4xl">🏷️</div>
+                </div>
+                <div class="mt-4">
+                    <a href="{{ path('category_index') }}" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                        Gérer les catégories →
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6 border-l-4 border-green-500">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium">Produits</p>
+                        <p class="text-3xl font-bold text-gray-900">{{ stats.products }}</p>
+                    </div>
+                    <div class="text-4xl">📦</div>
+                </div>
+                <div class="mt-4">
+                    <a href="{{ path('product_index') }}" class="text-green-600 hover:text-green-800 text-sm font-medium">
+                        Gérer les produits →
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6 border-l-4 border-purple-500">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium">Utilisateurs</p>
+                        <p class="text-3xl font-bold text-gray-900">{{ stats.users }}</p>
+                    </div>
+                    <div class="text-4xl">👥</div>
+                </div>
+                <div class="mt-4">
+                    <span class="text-purple-600 text-sm font-medium">
+                        Admin + Users
+                    </span>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6 border-l-4 border-yellow-500">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium">Stock faible</p>
+                        <p class="text-3xl font-bold text-gray-900">{{ stats.lowStock }}</p>
+                    </div>
+                    <div class="text-4xl">⚠️</div>
+                </div>
+                <div class="mt-4">
+                    <a href="{{ path('product_index') }}" class="text-yellow-600 hover:text-yellow-800 text-sm font-medium">
+                        Voir les produits →
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6">⚡ Actions rapides</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <a href="{{ path('category_new') }}" class="flex items-center justify-center px-6 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition duration-200 shadow-md hover:shadow-lg">
+                    <span class="text-2xl mr-3">➕</span>
+                    <span class="font-medium">Nouvelle Catégorie</span>
+                </a>
+                <a href="{{ path('product_new') }}" class="flex items-center justify-center px-6 py-4 bg-green-600 hover:bg-green-700 text-white rounded-lg transition duration-200 shadow-md hover:shadow-lg">
+                    <span class="text-2xl mr-3">➕</span>
+                    <span class="font-medium">Nouveau Produit</span>
+                </a>
+                <a href="{{ path('home') }}" class="flex items-center justify-center px-6 py-4 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition duration-200 shadow-md hover:shadow-lg">
+                    <span class="text-2xl mr-3">🏠</span>
+                    <span class="font-medium">Retour Accueil</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">ℹ️ Informations système</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div class="flex justify-between py-2 border-b">
+                    <span class="text-gray-600">Version Symfony</span>
+                    <span class="font-medium text-gray-900">5.4.x</span>
+                </div>
+                <div class="flex justify-between py-2 border-b">
+                    <span class="text-gray-600">PHP Version</span>
+                    <span class="font-medium text-gray-900">8.1+</span>
+                </div>
+                <div class="flex justify-between py-2 border-b">
+                    <span class="text-gray-600">Base de données</span>
+                    <span class="font-medium text-gray-900">SQLite</span>
+                </div>
+                <div class="flex justify-between py-2 border-b">
+                    <span class="text-gray-600">Utilisateur connecté</span>
+                    <span class="font-medium text-gray-900">{{ app.user.email }}</span>
+                </div>
+                <div class="flex justify-between py-2 border-b">
+                    <span class="text-gray-600">Rôle</span>
+                    <span class="font-medium text-gray-900">
+                        {% if 'ROLE_ADMIN' in app.user.roles %}
+                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                                Administrateur
+                            </span>
+                        {% else %}
+                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                Utilisateur
+                            </span>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

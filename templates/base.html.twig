@@ -21,6 +21,9 @@
                 <div class="flex justify-between items-center py-4">
                     <div class="flex space-x-6">
                         <a href="{{ path('home') }}" class="text-white hover:text-blue-200 transition">Accueil</a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('admin_dashboard') }}" class="text-white hover:text-blue-200 transition font-semibold">📊 Dashboard Admin</a>
+                        {% endif %}
                         <a href="{{ path('category_index') }}" class="text-white hover:text-blue-200 transition">Catégories</a>
                         <a href="{{ path('product_index') }}" class="text-white hover:text-blue-200 transition">Produits</a>
                     </div>
@@ -42,7 +45,7 @@
         <main class="container mx-auto px-4">
             {% for type, messages in app.flashes %}
                 {% for message in messages %}
-                    <div class="bg-{{ type == 'success' ? 'green' : 'red' }}-100 border border-{{ type == 'success' ? 'green' : 'red' }}-400 text-{{ type == 'success' ? 'green' : 'red' }}-700 px-4 py-3 rounded relative mb-4">
+                    <div class="bg-{{ type == 'success' ? 'green' : type == 'error' ? 'red' : type == 'warning' ? 'yellow' : 'blue' }}-100 border border-{{ type == 'success' ? 'green' : type == 'error' ? 'red' : type == 'warning' ? 'yellow' : 'blue' }}-400 text-{{ type == 'success' ? 'green' : type == 'error' ? 'red' : type == 'warning' ? 'yellow' : 'blue' }}-700 px-4 py-3 rounded relative mb-4">
                         {{ message }}
                     </div>
                 {% endfor %}
