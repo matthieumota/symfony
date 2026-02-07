@@ -54,16 +54,17 @@
                         </a>
                     </div>
 
-                    <div class="border border-gray-200 rounded-lg p-5 hover:shadow-md transition bg-yellow-50 border-yellow-200">
+                    <div class="border border-gray-200 rounded-lg p-5 hover:shadow-md transition bg-green-50 border-green-200">
                         <div class="flex items-center mb-3">
                             <span class="text-2xl mr-3">📦</span>
                             <h3 class="text-lg font-semibold text-gray-800">CRUD Produits</h3>
-                            <span class="ml-2 px-2 py-0.5 bg-yellow-100 text-yellow-800 text-xs rounded-full">En préparation</span>
+                            <span class="ml-2 px-2 py-0.5 bg-green-100 text-green-800 text-xs rounded-full">Disponible</span>
                         </div>
                         <p class="text-gray-600 text-sm mb-3">Gestion complète des produits avec catégories</p>
-                        <span class="inline-block bg-gray-200 text-gray-400 font-bold py-2 px-4 rounded text-sm cursor-not-allowed">
-                            Prochainement...
-                        </span>
+                        <a href="{{ path('product_index') }}"
+                           class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded text-sm">
+                            Accéder aux Produits →
+                        </a>
                     </div>
 
                     <div class="border border-gray-200 rounded-lg p-5 hover:shadow-md transition bg-gray-50 border-gray-200">
@@ -85,16 +86,16 @@
                     </div>
                 </div>
 
-                <div class="mt-8 p-4 bg-blue-50 border-l-4 border-blue-500 rounded">
+                <div class="mt-8 p-4 bg-green-50 border-l-4 border-green-500 rounded">
                     <div class="flex">
                         <div class="flex-shrink-0">
-                            <svg class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                            <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                             </svg>
                         </div>
                         <div class="ml-3">
-                            <p class="text-sm text-blue-700">
-                                <strong>Dernière mise à jour :</strong> Catégories implémentées (CRUD complet). Les produits et l'authentification seront ajoutés dans les prochaines étapes de la formation.
+                            <p class="text-sm text-green-700">
+                                <strong>Dernière mise à jour :</strong> Catégories et Produits implémentés (CRUD complet avec méthode DELETE). Admin et Authentification seront ajoutés dans les prochaines étapes.
                             </p>
                         </div>
                     </div>

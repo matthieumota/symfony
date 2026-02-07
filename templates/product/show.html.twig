@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div class="container mx-auto px-4 py-8">
+        <div class="bg-white rounded-lg shadow-xl p-6 max-w-2xl mx-auto">
+            <h1 class="text-3xl font-bold text-gray-900 mb-6">{{ product.name }}</h1>
+
+            <table class="min-w-full">
+                <tr>
+                    <th class="px-4 py-2 text-left font-semibold text-gray-700">ID</th>
+                    <td class="px-4 py-2">{{ product.id }}</td>
+                </tr>
+                <tr>
+                    <th class="px-4 py-2 text-left font-semibold text-gray-700">Nom</th>
+                    <td class="px-4 py-2">{{ product.name }}</td>
+                </tr>
+                <tr>
+                    <th class="px-4 py-2 text-left font-semibold text-gray-700">Slug</th>
+                    <td class="px-4 py-2"><code>{{ product.slug }}</code></td>
+                </tr>
+                <tr>
+                    <th class="px-4 py-2 text-left font-semibold text-gray-700">Prix</th>
+                    <td class="px-4 py-2">{{ product.price|number_format(2, ',', ' ') }} €</td>
+                </tr>
+                <tr>
+                    <th class="px-4 py-2 text-left font-semibold text-gray-700">Quantité en stock</th>
+                    <td class="px-4 py-2">
+                        {% if product.quantity > 0 %}
+                            <span class="text-green-600">{{ product.quantity }}</span>
+                        {% else %}
+                            <span class="text-red-600">Rupture</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th class="px-4 py-2 text-left font-semibold text-gray-700">Catégorie</th>
+                    <td class="px-4 py-2">
+                        <a href="{{ path('category_show', {'id': product.category.id}) }}"
+                           class="text-blue-600 hover:text-blue-900">
+                            {{ product.category.name }}
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="px-4 py-2 text-left font-semibold text-gray-700">Description</th>
+                    <td class="px-4 py-2">{{ product.description|default('—') }}</td>
+                </tr>
+                <tr>
+                    <th class="px-4 py-2 text-left font-semibold text-gray-700">Créé le</th>
+                    <td class="px-4 py-2">{{ product.createdAt ? product.createdAt|date('Y-m-d H:i:s') : '—' }}</td>
+                </tr>
+                <tr>
+                    <th class="px-4 py-2 text-left font-semibold text-gray-700">Mis à jour le</th>
+                    <td class="px-4 py-2">{{ product.updatedAt ? product.updatedAt|date('Y-m-d H:i:s') : '—' }}</td>
+                </tr>
+            </table>
+
+            <div class="mt-6 flex space-x-4">
+                <a href="{{ path('product_edit', {'id': product.id}) }}"
+                   class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Éditer
+                </a>
+                <a href="{{ path('product_index') }}"
+                   class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                    Retour à la liste
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Éditer Produit{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div class="container mx-auto px-4 py-8">
+        <div class="bg-white rounded-lg shadow-xl p-6 max-w-2xl mx-auto">
+            <h1 class="text-3xl font-bold text-gray-900 mb-6">Éditer le produit</h1>
+
+            {{ include('product/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+            <a href="{{ path('product_index') }}"
+               class="inline-block mt-4 text-gray-600 hover:text-gray-900">
+                ← Retour à la liste
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
