@@ -15,8 +15,6 @@ class LoginType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $isRegistration = $options['is_registration'] ?? false;
-
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'Email',
@@ -31,43 +29,31 @@ class LoginType extends AbstractType
                     'class' => 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500',
                     'placeholder' => 'Votre nom',
                 ],
-                'required' => $isRegistration,
+                'required' => true,
             ]);
 
-        if ($isRegistration) {
-            $builder->add('password', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'first_options' => [
-                    'label' => 'Mot de passe',
-                    'attr' => [
-                        'class' => 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500',
-                    ],
-                ],
-                'second_options' => [
-                    'label' => 'Confirmer le mot de passe',
-                    'attr' => [
-                        'class' => 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500',
-                    ],
-                ],
-                'mapped' => false,
-            ]);
-        } else {
-            $builder->add('password', PasswordType::class, [
+        $builder->add('password', RepeatedType::class, [
+            'type' => PasswordType::class,
+            'first_options' => [
                 'label' => 'Mot de passe',
-                'mapped' => false,
                 'attr' => [
                     'class' => 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500',
-                    'placeholder' => '••••••••',
                 ],
-            ]);
-        }
+            ],
+            'second_options' => [
+                'label' => 'Confirmer le mot de passe',
+                'attr' => [
+                    'class' => 'w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500',
+                ],
+            ],
+            'mapped' => false,
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => User::class,
-            'is_registration' => false,
         ]);
     }
 }
