@@ -12,10 +12,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractController
 {
-    /**
-     * @Route("/admin", name="admin_dashboard")
-     * @IsGranted("ROLE_ADMIN")
-     */
+    #[Route(path: '/admin', name: 'admin_dashboard')]
+    #[IsGranted('ROLE_ADMIN')]
     public function dashboard(
         CategoryRepository $categoryRepository,
         ProductRepository $productRepository,

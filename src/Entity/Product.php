@@ -7,66 +7,46 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass=ProductRepository::class)
- * @ORM\HasLifecycleCallbacks
- * @UniqueEntity(fields={"slug"}, message="Ce slug est déjà utilisé")
- */
+#[ORM\Entity(repositoryClass: ProductRepository::class)]
+#[ORM\HasLifecycleCallbacks]
+#[UniqueEntity(fields: ['slug'], message: 'Ce slug est déjà utilisé')]
 class Product
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     */
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     */
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private $slug;
 
-    /**
-     * @ORM\Column(type="decimal", precision=10, scale=2)
-     * @Assert\NotBlank
-     * @Assert\Positive
-     */
+    #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
+    #[Assert\NotBlank]
+    #[Assert\Positive]
     private $price;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
+    #[ORM\Column(type: 'text', nullable: true)]
     private $description;
 
-    /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank
-     * @Assert\PositiveOrZero
-     */
+    #[ORM\Column(type: 'integer')]
+    #[Assert\NotBlank]
+    #[Assert\PositiveOrZero]
     private $quantity;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="products", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotBlank
-     */
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'products', cascade: ['persist'])]
+    #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank]
     private $category;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: 'datetime')]
     private $createdAt;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    #[ORM\Column(type: 'datetime')]
     private $updatedAt;
 
     public function getId(): ?int
@@ -170,10 +150,8 @@ class Product
         return $this;
     }
 
-    /**
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
-     */
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
     public function updatedTimestamps(): void
     {
         if ($this->getCreatedAt() === null) {

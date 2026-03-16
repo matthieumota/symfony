@@ -11,14 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/admin/category")
- */
+#[Route(path: '/admin/category')]
 class CategoryController extends AbstractController
 {
-    /**
-     * @Route("/", name="category_index", methods={"GET"})
-     */
+    #[Route(path: '/', name: 'category_index', methods: ['GET'])]
     public function index(CategoryRepository $categoryRepository): Response
     {
         $categories = $categoryRepository->findAllOrderedByName();
@@ -28,9 +24,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="category_new", methods={"GET", "POST"})
-     */
+    #[Route(path: '/new', name: 'category_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $category = new Category();
@@ -52,9 +46,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="category_show", methods={"GET"})
-     */
+    #[Route(path: '/{id}', name: 'category_show', methods: ['GET'])]
     public function show(Category $category): Response
     {
         return $this->render('category/show.html.twig', [
@@ -62,9 +54,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="category_edit", methods={"GET", "POST"})
-     */
+    #[Route(path: '/{id}/edit', name: 'category_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Category $category, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(CategoryType::class, $category);
@@ -84,9 +74,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="category_delete", methods={"DELETE"})
-     */
+    #[Route(path: '/{id}', name: 'category_delete', methods: ['DELETE'])]
     public function delete(Request $request, Category $category, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
