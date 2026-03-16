@@ -1,0 +1,10 @@
+parameters:
+    level: 0
+    paths:
+        - bin/
+        - config/
+        - public/
+        - src/
+        - tests/
+includes:
+    - vendor/phpstan/phpstan-deprecation-rules/rules.neon
