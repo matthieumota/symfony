@@ -121,6 +121,19 @@
                     </div>
                 </div>
 
+                <div {{ stimulus_controller('hello', { username: 'Fiorella' }) }} data-hello-little-class="text-red-500" data-hello-big-class="text-4xl" data-hello-equal-class="text-green-500">
+                    <input type="text" data-hello-target="username" data-action="input->hello#updateUsername">
+                    <span data-hello-target="output"></span>
+                    <button class="btn btn-primary" data-action="click->hello#greet">Go</button>
+                    <button data-action="click->hello#add">Ajouter</button>
+                    <div data-hello-target="list"></div>
+                </div>
+
+                <div {{ stimulus_controller('clock') }} data-action="hello:greeted@window->clock#destroy">
+                    <span data-clock-target="output"></span>
+                    <button class="btn btn-primary" data-action="click->clock#destroy">Cacher</button>
+                </div>
+
                 <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">🎯 Points de migration à illustrer</h2>
 
                 <div class="bg-gray-50 rounded-lg p-6">
