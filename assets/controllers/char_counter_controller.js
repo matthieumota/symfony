@@ -2,9 +2,10 @@ import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
     static values = { max: { type: Number, default: 200 } };
-    static targets = ['counter'];
+    static targets = ['counter', 'textarea'];
 
     connect() {
+        this.textareaTarget.maxLength = this.maxValue + 20;
         this.counterTarget.textContent = this.maxValue;
     }
 

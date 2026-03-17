@@ -54,8 +54,43 @@
             <h2 class="text-xl font-semibold text-gray-800 mb-1">Compteur de caractères</h2>
             <p class="text-sm text-gray-500 mb-4">Values, targets, callback valueChanged</p>
             <div {{ stimulus_controller('char-counter', { max: 280 }) }}>
-                <textarea data-action="input->char-counter#update" rows="4" class="w-full border rounded px-3 py-2" maxlength="300"></textarea>
-                <p class="text-sm text-gray-600 mt-1">Caractères restants : <span data-char-counter-target="counter">280</span></p>
+                <textarea data-action="input->char-counter#update" data-char-counter-target="textarea" rows="4" class="w-full border rounded px-3 py-2"></textarea>
+                <p class="text-sm text-gray-600 mt-1">Caractères restants : <span data-char-counter-target="counter"></span></p>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-lg shadow p-6 mb-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-1">Clipboard</h2>
+            <p class="text-sm text-gray-500 mb-4">Targets, navigator.clipboard, setTimeout</p>
+            <div {{ stimulus_controller('clipboard') }} class="flex items-center gap-4">
+                <code data-clipboard-target="source" class="bg-gray-100 px-3 py-2 rounded text-sm">npm install @hotwired/stimulus</code>
+                <button data-clipboard-target="button"
+                        data-action="click->clipboard#copy"
+                        class="bg-gray-800 text-white px-4 py-2 rounded text-sm">Copier</button>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-lg shadow p-6 mb-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-1">Tabs</h2>
+            <p class="text-sm text-gray-500 mb-4">Targets multiples, classes, params</p>
+            <div {{ stimulus_controller('tabs', {}, { active: 'font-bold border-b-2 border-blue-600 text-blue-600' }) }}>
+                <div class="flex gap-2 border-b mb-4">
+                    <button class="px-4 py-2"
+                            data-tabs-target="tab"
+                            data-action="click->tabs#show"
+                            data-tabs-index-param="0">Onglet 1</button>
+                    <button class="px-4 py-2"
+                            data-tabs-target="tab"
+                            data-action="click->tabs#show"
+                            data-tabs-index-param="1">Onglet 2</button>
+                    <button class="px-4 py-2"
+                            data-tabs-target="tab"
+                            data-action="click->tabs#show"
+                            data-tabs-index-param="2">Onglet 3</button>
+                </div>
+                <div data-tabs-target="panel" class="p-4 bg-gray-50 rounded">Contenu du panel 1</div>
+                <div data-tabs-target="panel" class="p-4 bg-gray-50 rounded">Contenu du panel 2</div>
+                <div data-tabs-target="panel" class="p-4 bg-gray-50 rounded">Contenu du panel 3</div>
             </div>
         </section>
 
