@@ -95,6 +95,25 @@
         </section>
 
         <section class="bg-white rounded-lg shadow p-6 mb-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-1">Panier</h2>
+            <p class="text-sm text-gray-500 mb-4">Array value, valueChanged, params</p>
+            <div {{ stimulus_controller('cart') }}>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    {% for product in products %}
+                        <button data-action="cart#add"
+                                data-cart-name-param="{{ product.name }}"
+                                data-cart-price-param="{{ product.price }}"
+                                class="bg-blue-600 text-white px-3 py-1 rounded text-sm">
+                            Ajouter {{ product.name }} ({{ product.price }}€)
+                        </button>
+                    {% endfor %}
+                </div>
+                <ul data-cart-target="list" class="divide-y mb-3"></ul>
+                <p class="font-semibold">Total : <strong data-cart-target="total">0</strong>€</p>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-lg shadow p-6 mb-6">
             <h2 class="text-xl font-semibold text-gray-800 mb-1">Toggle</h2>
             <p class="text-sm text-gray-500 mb-4">Targets, afficher/masquer un élément</p>
             <div {{ stimulus_controller('toggle') }}>
