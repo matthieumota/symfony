@@ -16,4 +16,10 @@ class HomeController extends AbstractController
             'sf_version' => '5.4',
         ]);
     }
+
+    #[Route(path: '/exercices', name: 'exercices')]
+    public function exercices(): Response
+    {
+        return $this->render('home/exercices.html.twig');
+    }
 }

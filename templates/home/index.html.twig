@@ -134,6 +134,12 @@
                     <button class="btn btn-primary" data-action="click->clock#destroy">Cacher</button>
                 </div>
 
+                <div {{ stimulus_controller('counter', { count: 10 }) }}>
+                    <button data-action="dblclick->counter#decrement">-</button>
+                    <span data-counter-target="output"></span>
+                    <button data-action="click->counter#increment" data-counter-step-param="12345">+</button>
+                </div>
+
                 <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">🎯 Points de migration à illustrer</h2>
 
                 <div class="bg-gray-50 rounded-lg p-6">

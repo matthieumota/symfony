@@ -11,7 +11,7 @@ import { Controller } from '@hotwired/stimulus';
  */
 export default class extends Controller {
     static targets = ['output', 'username', 'list']
-    static values = { username: String, default: 'Guest' }
+    static values = { username: { type: String, default: 'Guest' } }
     static classes = ['little', 'big', 'equal']
 
     connect() {
