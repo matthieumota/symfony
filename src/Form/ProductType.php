@@ -53,18 +53,10 @@ class ProductType extends AbstractType
                 ],
                 'help' => 'Quantité disponible en stock'
             ])
-            ->add('category', EntityType::class, [
-                'class' => 'App\Entity\Category',
+            ->add('category', CategoryAutocompleteField::class, [
                 'choice_label' => 'name',
                 'label' => 'Catégorie',
                 'placeholder' => 'Choisir une catégorie',
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'query_builder' => function ($repository) {
-                    return $repository->createQueryBuilder('c')
-                        ->orderBy('c.name', 'ASC');
-                }
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
