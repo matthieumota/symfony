@@ -114,6 +114,19 @@
         </section>
 
         <section class="bg-white rounded-lg shadow p-6 mb-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-1">Search</h2>
+            <p class="text-sm text-gray-500 mb-4">Fetch, debounce, targets</p>
+            <div {{ stimulus_controller('search', { url: path('product_search') }) }}>
+                <input type="text"
+                       data-action="input->search#debounce"
+                       placeholder="Rechercher un produit..."
+                       class="border rounded px-3 py-2 w-full mb-2">
+                <p data-search-target="status" hidden class="text-sm text-gray-400">Chargement...</p>
+                <ul data-search-target="results" class="divide-y"></ul>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-lg shadow p-6 mb-6">
             <h2 class="text-xl font-semibold text-gray-800 mb-1">Toggle</h2>
             <p class="text-sm text-gray-500 mb-4">Targets, afficher/masquer un élément</p>
             <div {{ stimulus_controller('toggle') }}>

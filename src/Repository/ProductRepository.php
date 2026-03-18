@@ -73,9 +73,9 @@ class ProductRepository extends ServiceEntityRepository
     public function search(string $searchTerm): array
     {
         return $this->createQueryBuilder('p')
-            ->where('p.name LIKE :term')
-            ->orWhere('p.description LIKE :term')
-            ->setParameter('term', '%' . $searchTerm . '%')
+            ->where('LOWER(p.name) LIKE :term')
+            ->orWhere('LOWER(p.description) LIKE :term')
+            ->setParameter('term', '%' . strtolower($searchTerm) . '%')
             ->orderBy('p.name', 'ASC')
             ->getQuery()
             ->getResult();
