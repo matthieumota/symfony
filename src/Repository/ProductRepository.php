@@ -70,13 +70,19 @@ class ProductRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function search(string $searchTerm): array
+    public function search(string $searchTerm, array $categories = []): array
     {
-        return $this->createQueryBuilder('p')
+        $qb = $this->createQueryBuilder('p')
             ->where('LOWER(p.name) LIKE :term')
             ->orWhere('LOWER(p.description) LIKE :term')
-            ->setParameter('term', '%' . strtolower($searchTerm) . '%')
-            ->orderBy('p.name', 'ASC')
+            ->setParameter('term', '%' . strtolower($searchTerm) . '%');
+
+        if (!empty($categories)) {
+            $qb->andWhere('p.category IN (:categories)')
+                ->setParameter('categories', $categories);
+        }
+
+        return $qb->orderBy('p.name', 'ASC')
             ->getQuery()
             ->getResult();
     }

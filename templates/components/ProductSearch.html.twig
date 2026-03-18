@@ -1,15 +1,26 @@
 <div{{ attributes }}>
     <h1>Cette recherche doit être {{ color }}</h1>
-    <input type="text" data-model="on(change)|debounce(150)|query">
+    <input type="text" data-model="on(input)|debounce(150)|query">
     {{ query | upper }}
 
-    <ul>
+    <span data-loading>
+        Loading
+    </span>
+
+    <ul data-loading="delay|addClass(opacity-50)">
         {% for product in this.products %}
             <li>{{ product.name }}</li>
         {% else %}
             <li>Aucun résultat</li>
         {% endfor %}
     </ul>
+
+    {% for category in this.categories %}
+        <label for="{{ category.id }}">
+            <input id="{{ category.id }}" type="checkbox" value="{{ category.id }}" data-model="selectedCategories">
+            {{ category.name }}
+        </label>
+    {% endfor %}
 
     <button
         type="button"
