@@ -1,0 +1,20 @@
+<div{{ attributes }}>
+    <h1>Cette recherche doit être {{ color }}</h1>
+    <input type="text" data-model="on(change)|debounce(150)|query">
+    {{ query | upper }}
+
+    <ul>
+        {% for product in this.products %}
+            <li>{{ product.name }}</li>
+        {% else %}
+            <li>Aucun résultat</li>
+        {% endfor %}
+    </ul>
+
+    <button
+        type="button"
+        data-model="query"
+        data-value="iphone"
+        data-action="live#update"
+    >Chercher</button>
+</div>
